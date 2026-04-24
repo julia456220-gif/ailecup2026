@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 第三屆愛樂盃音樂大賽</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dark: #9A7A30;
+    --deep: #0D0D1A;
+    --deep2: #12122A;
+    --mid: #1C1C3A;
+    --accent: #6A4FC8;
+    --accent2: #A87FE8;
+    --white: #F8F4EE;
+    --gray: #B0A89A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--deep);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(13,13,26,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.1rem; font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a {
+    color: var(--gray); text-decoration: none;
+    font-size: 0.88rem; letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--deep);
+    padding: 0.5rem 1.2rem; border-radius: 4px;
+    text-decoration: none; font-weight: 700;
+    font-size: 0.88rem; letter-spacing: 0.05em;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(106,79,200,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 80% 70%, rgba(201,168,76,0.12) 0%, transparent 60%),
+      var(--deep);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-deco {
+    position: absolute; border-radius: 50%;
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero-deco-1 {
+    width: 500px; height: 500px;
+    border: 1px solid rgba(201,168,76,0.1);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation-delay: 0s;
+  }
+  .hero-deco-2 {
+    width: 320px; height: 320px;
+    border: 1px solid rgba(106,79,200,0.2);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation-delay: 2s;
+  }
+  @keyframes float {
+    0%,100% { transform: translate(-50%,-50%) scale(1); }
+    50% { transform: translate(-50%,-52%) scale(1.03); }
+  }
+  .hero-year {
+    font-size: clamp(5rem, 15vw, 11rem);
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    opacity: 0.18;
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    letter-spacing: -0.02em;
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold); font-size: 0.78rem;
+    letter-spacing: 0.15em; padding: 0.35rem 1rem;
+    margin-bottom: 1.5rem; border-radius: 2px;
+  }
+  .hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 900; line-height: 1.15;
+    margin-bottom: 1rem;
+    background: linear-gradient(180deg, #fff 60%, rgba(255,255,255,0.6));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    color: var(--gray); font-size: clamp(0.9rem, 2vw, 1.05rem);
+    line-height: 1.8; max-width: 600px; margin: 0 auto 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+  .btn-primary {
+    background: var(--gold); color: var(--deep);
+    padding: 0.85rem 2rem; border-radius: 4px;
+    text-decoration: none; font-weight: 700;
+    font-size: 1rem; letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-secondary {
+    border: 1px solid var(--gold); color: var(--gold);
+    padding: 0.85rem 2rem; border-radius: 4px;
+    text-decoration: none; font-weight: 500;
+    font-size: 1rem; letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: rgba(201,168,76,0.1); transform: translateY(-2px); }
+  .hero-deadline {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 0.7rem 1.5rem; border-radius: 50px;
+    font-size: 0.9rem; color: var(--gold-light);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    color: var(--gold); font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900; margin-bottom: 0.5rem;
+  }
+  .section-subtitle { color: var(--gray); margin-bottom: 3rem; font-size: 0.95rem; }
+  hr.divider {
+    border: none; border-top: 1px solid rgba(201,168,76,0.15);
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  /* ── ABOUT ── */
+  #about { text-align: center; }
+  .about-body {
+    color: var(--gray); line-height: 2; max-width: 700px;
+    margin: 0 auto; font-size: 1rem;
+  }
+  .about-body p + p { margin-top: 1rem; }
+
+  /* ── INFO CARDS ── */
+  #info { padding: 5rem 2rem; }
+  .info-wrap { max-width: 1100px; margin: 0 auto; }
+  .info-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  .info-card {
+    background: var(--mid);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px; padding: 2.5rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .info-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-4px);
+  }
+  .info-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .info-card h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .info-row { display: flex; gap: 1rem; margin-bottom: 0.8rem; align-items: flex-start; }
+  .info-label {
+    color: var(--gold); font-size: 0.78rem;
+    letter-spacing: 0.05em; min-width: 60px;
+    padding-top: 0.1rem;
+  }
+  .info-val { color: var(--white); font-size: 0.95rem; line-height: 1.6; }
+  .tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light); font-size: 0.78rem;
+    padding: 0.2rem 0.6rem; border-radius: 20px;
+    margin: 0.15rem;
+  }
+
+  /* ── GROUPS ── */
+  #groups { padding: 5rem 2rem; }
+  .groups-wrap { max-width: 1100px; margin: 0 auto; }
+  .groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+  .group-pill {
+    background: var(--mid);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 8px; padding: 1.2rem 1rem;
+    text-align: center; transition: all 0.2s;
+  }
+  .group-pill:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+  .group-pill .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .group-pill .name { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .group-pill .desc { font-size: 0.72rem; color: var(--gray); }
+
+  /* ── SCORES ── */
+  #scores { padding: 5rem 2rem; }
+  .scores-wrap { max-width: 1100px; margin: 0 auto; }
+  .scores-grid {
+    display: grid; grid-template-columns: repeat(5,1fr); gap: 1.5rem;
+  }
+  .score-item { text-align: center; }
+  .score-circle {
+    width: 90px; height: 90px; border-radius: 50%;
+    border: 3px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 0.8rem;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--gold);
+    background: rgba(201,168,76,0.06);
+    position: relative;
+  }
+  .score-circle::before {
+    content: '';
+    position: absolute; inset: -6px; border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .score-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; }
+
+  /* ── AWARDS ── */
+  #awards { padding: 5rem 2rem; }
+  .awards-wrap { max-width: 1100px; margin: 0 auto; }
+  .awards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .award-card {
+    background: var(--mid);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px; padding: 2.5rem;
+  }
+  .award-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .award-card h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .award-card .desc { color: var(--gray); font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .award-list { list-style: none; margin-bottom: 1.5rem; }
+  .award-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.9rem; color: var(--white);
+  }
+  .award-note {
+    background: rgba(201,168,76,0.06);
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.82rem; color: var(--gray);
+    line-height: 1.8;
+  }
+  .award-note-title { color: var(--gold); font-weight: 700; margin-bottom: 0.5rem; font-size: 0.85rem; }
+  .award-note li { margin-bottom: 0.3rem; list-style: disc; margin-left: 1rem; }
+
+  /* ── REGISTER ── */
+  #register { padding: 5rem 2rem; }
+  .register-wrap { max-width: 1100px; margin: 0 auto; }
+  .register-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .steps { display: flex; flex-direction: column; gap: 2rem; }
+  .step { display: flex; gap: 1.5rem; }
+  .step-num {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--gold); color: var(--deep);
+    font-weight: 900; font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .step p { color: var(--gray); font-size: 0.88rem; line-height: 1.7; }
+  .bank-box {
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 8px; padding: 1rem 1.2rem; margin-top: 0.5rem;
+  }
+  .bank-row { display: flex; gap: 0.8rem; font-size: 0.85rem; margin-bottom: 0.3rem; }
+  .bank-label { color: var(--gold); min-width: 40px; }
+  .bank-val { color: var(--white); }
+  .qr-box {
+    background: var(--mid);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px; padding: 2rem;
+    text-align: center;
+  }
+  .qr-box img {
+    width: 180px; height: 180px;
+    border-radius: 8px;
+    border: 4px solid rgba(201,168,76,0.3);
+    margin-bottom: 1rem;
+    object-fit: cover;
+  }
+  .qr-box p { color: var(--gray); font-size: 0.88rem; margin-bottom: 1.5rem; }
+  .deadline-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold);
+    color: var(--gold); font-size: 0.85rem;
+    padding: 0.5rem 1rem; border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── RULES ── */
+  #rules { padding: 5rem 2rem; }
+  .rules-wrap { max-width: 1100px; margin: 0 auto; }
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .rule-item {
+    display: flex; gap: 1rem;
+    background: var(--mid);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px; padding: 1.2rem;
+    transition: border-color 0.2s;
+  }
+  .rule-item:hover { border-color: rgba(201,168,76,0.2); }
+  .rule-n {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1px solid var(--gold);
+    color: var(--gold); font-size: 0.8rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .rule-text { font-size: 0.88rem; color: var(--gray); line-height: 1.7; }
+
+  /* ── CONTACT ── */
+  #contact {
+    padding: 5rem 2rem;
+    background: linear-gradient(180deg, transparent, rgba(106,79,200,0.08));
+  }
+  .contact-wrap { max-width: 1100px; margin: 0 auto; }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem;
+  }
+  .contact-card {
+    background: var(--mid);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px; padding: 2rem;
+    text-align: center; transition: all 0.2s;
+  }
+  .contact-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-4px);
+  }
+  .contact-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+  .contact-card h4 { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .contact-card p { font-size: 1rem; font-weight: 700; line-height: 1.8; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep2);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    text-align: center; padding: 2rem;
+    color: var(--gray); font-size: 0.82rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .info-grid, .awards-grid, .register-grid, .contact-grid, .rules-grid { grid-template-columns: 1fr; }
+    .scores-grid { grid-template-columns: repeat(3,1fr); }
+    .groups-grid { grid-template-columns: repeat(2,1fr); }
+    .hero-deco-1 { width: 300px; height: 300px; }
+    .hero-deco-2 { width: 200px; height: 200px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">愛樂盃</div>
+  <ul class="nav-links">
+    <li><a href="#home">首頁</a></li>
+    <li><a href="#about">關於大賽</a></li>
+    <li><a href="#info">比賽資訊</a></li>
+    <li><a href="#register">報名方式</a></li>
+    <li><a href="#contact">聯絡我們</a></li>
+  </ul>
+  <a href="https://forms.gle/fyEK8Hnh88JLgtL59" class="nav-cta" target="_blank">立即報名</a>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-deco hero-deco-1"></div>
+  <div class="hero-deco hero-deco-2"></div>
+  <div class="hero-year">2026</div>
+  <div class="hero-content">
+    <div class="hero-badge">第三屆 · 2026</div>
+    <h1 class="hero-title">愛樂盃<br>音樂大賽</h1>
+    <p class="hero-sub">讓音樂點亮夢想舞台<br>本音樂大賽旨在發掘並培養音樂人才，提供一個專業且充滿創意的舞台，讓音樂愛好者展現才華、交流學習，激發更多音樂靈感</p>
+    <div class="hero-btns">
+      <a href="https://forms.gle/fyEK8Hnh88JLgtL59" class="btn-primary" target="_blank">立即報名</a>
+      <a href="#about" class="btn-secondary">了解更多</a>
+    </div>
+    <div class="hero-deadline">📅 報名截止日期：民國 115 年 7 月 31 日</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">關於大賽</div>
+  <h2 class="section-title">發掘音樂人才，點亮夢想舞台</h2>
+  <p class="section-subtitle">大賽宗旨</p>
+  <div class="about-body">
+    <p>本音樂大賽旨在發掘並培養音樂人才，提供一個專業且充滿創意的舞台，讓音樂愛好者展現才華、交流學習，激發更多音樂靈感。</p>
+    <p>透過本賽事，我們希望鼓勵不同年齡、背景的音樂人勇敢追夢，提升表演技術演奏，促進音樂文化的多元發展，讓參賽者在挑戰中成長進步！</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- INFO -->
+<div id="info" style="background: linear-gradient(180deg, transparent, rgba(28,28,58,0.5));">
+<section style="max-width:1100px;margin:0 auto;padding:5rem 2rem;">
+  <div class="section-label">比賽資訊</div>
+  <h2 class="section-title">兩大賽事，多元選擇</h2>
+  <p class="section-subtitle">古典音樂大賽 &amp; 流行音樂大賽</p>
+  <div class="info-grid">
+    <!-- Classical -->
+    <div class="info-card">
+      <div class="info-icon">🎹</div>
+      <h3>古典音樂大賽</h3>
+      <div class="info-row">
+        <span class="info-label">時間</span>
+        <span class="info-val">民國 115 年 8 月 15–16 日（六、日）</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">地點</span>
+        <span class="info-val">中央大學大講堂<br><small style="color:var(--gray)">桃園市中壢區中大路300號</small></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">項目</span>
+        <span class="info-val">
+          <span class="tag">古典鋼琴</span>
+          <span class="tag">流行鋼琴</span>
+          <span class="tag">小提琴</span>
+          <span class="tag">四手聯彈</span>
+          <span class="tag">長笛</span>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">費用</span>
+        <span class="info-val">古典音樂 <strong style="color:var(--gold)">2,000 元</strong><br>四手聯彈一人 <strong style="color:var(--gold)">1,200 元</strong></span>
+      </div>
+    </div>
+    <!-- Pop -->
+    <div class="info-card">
+      <div class="info-icon">🎸</div>
+      <h3>流行音樂大賽</h3>
+      <div class="info-row">
+        <span class="info-label">時間</span>
+        <span class="info-val">民國 115 年 9 月 5 日（六）</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">地點</span>
+        <span class="info-val">桃園市政府文化局演藝廳<br><small style="color:var(--gray)">桃園市桃園區縣府路21號</small></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">項目</span>
+        <span class="info-val">
+          <span class="tag">木吉他</span>
+          <span class="tag">電吉他</span>
+          <span class="tag">烏克麗麗</span>
+          <span class="tag">爵士鼓</span>
+          <span class="tag">薩克斯風</span>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">費用</span>
+        <span class="info-val">流行音樂 <strong style="color:var(--gold)">2,200 元</strong></span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- GROUPS -->
+<div id="groups">
+<section style="max-width:1100px;margin:0 auto;padding:5rem 2rem;">
+  <div class="section-label">參賽組別</div>
+  <h2 class="section-title">適合各年齡層的音樂愛好者</h2>
+  <p class="section-subtitle">從幼兒到成人，歡迎所有音樂愛好者參與</p>
+  <div class="groups-grid">
+    <div class="group-pill"><div class="icon">🎵</div><div class="name">幼兒組</div><div class="desc">學齡前兒童</div></div>
+    <div class="group-pill"><div class="icon">🎵</div><div class="name">國小一年級組</div><div class="desc">國小一年級</div></div>
+    <div class="group-pill"><div class="icon">🎵</div><div class="name">國小二年級組</div><div class="desc">國小二年級</div></div>
+    <div class="group-pill"><div class="icon">🎵</div><div class="name">國小三年級組</div><div class="desc">國小三年級</div></div>
+    <div class="group-pill"><div class="icon">🎵</div><div class="name">國小四年級組</div><div class="desc">國小四年級</div></div>
+    <div class="group-pill"><div class="icon">🎵</div><div class="name">國小五年級組</div><div class="desc">國小五年級</div></div>
+    <div class="group-pill"><div class="icon">🎵</div><div class="name">國小六年級組</div><div class="desc">國小六年級</div></div>
+    <div class="group-pill"><div class="icon">🎵</div><div class="name">國中一～三年級組</div><div class="desc">國中階段</div></div>
+    <div class="group-pill"><div class="icon">🎵</div><div class="name">高中一～三年級組</div><div class="desc">高中階段</div></div>
+    <div class="group-pill"><div class="icon">🎵</div><div class="name">成人組</div><div class="desc">18歲以上</div></div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- SCORES -->
+<div id="scores" style="background:linear-gradient(180deg,transparent,rgba(28,28,58,0.4))">
+<section style="max-width:1100px;margin:0 auto;padding:5rem 2rem;">
+  <div class="section-label">評分標準</div>
+  <h2 class="section-title">專業公正的評審機制</h2>
+  <p class="section-subtitle" style="margin-bottom:3rem">由專業評審依以下標準進行評分</p>
+  <div class="scores-grid">
+    <div class="score-item">
+      <div class="score-circle">30%</div>
+      <div class="score-name">彈奏技巧</div>
+    </div>
+    <div class="score-item">
+      <div class="score-circle">30%</div>
+      <div class="score-name">演奏熟練度</div>
+    </div>
+    <div class="score-item">
+      <div class="score-circle">15%</div>
+      <div class="score-name">音樂性</div>
+    </div>
+    <div class="score-item">
+      <div class="score-circle">15%</div>
+      <div class="score-name">曲目難易度</div>
+    </div>
+    <div class="score-item">
+      <div class="score-circle">10%</div>
+      <div class="score-name">優雅台風</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- AWARDS -->
+<div id="awards">
+<section style="max-width:1100px;margin:0 auto;padding:5rem 2rem;">
+  <div class="section-label">獎項說明</div>
+  <h2 class="section-title">豐富獎項，肯定每位參賽者的努力</h2>
+  <p class="section-subtitle">比賽組 &amp; 表演組</p>
+  <div class="awards-grid">
+    <div class="award-card">
+      <div class="icon">🏆</div>
+      <h3>比賽組</h3>
+      <p class="desc">較具挑戰性，適合有一定演奏基礎的參賽者</p>
+      <ul class="award-list">
+        <li>✓ 前三名：水晶獎盃 + 桃園市議長獎狀</li>
+        <li>✓ 未達前三名：優等獎盃 + 獎狀乙紙</li>
+      </ul>
+    </div>
+    <div class="award-card">
+      <div class="icon">⭐</div>
+      <h3>表演組</h3>
+      <p class="desc">較適合初學者或比較沒有舞台經驗的參賽者</p>
+      <ul class="award-list">
+        <li>✓ 人人皆有：特優獎盃 + 獎狀乙紙</li>
+      </ul>
+    </div>
+  </div>
+  <div class="award-note" style="margin-top:2rem">
+    <div class="award-note-title">📝 其他說明</div>
+    <ul>
+      <li>教師指導獎盃需另外購買（每座約 300 元，獎盃盒運費約 200 元）</li>
+      <li>獎盃、獎狀及評語請於比賽當場領取</li>
+      <li>若當場未領取需寄送，運費自付</li>
+      <li>桃園市議長獎狀於賽後一個月寄出</li>
+    </ul>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- REGISTER -->
+<div id="register">
+<section style="max-width:1100px;margin:0 auto;padding:5rem 2rem;">
+  <div class="section-label">報名方式</div>
+  <h2 class="section-title">簡單快速的報名流程</h2>
+  <p class="section-subtitle">三步驟完成報名</p>
+  <div class="register-grid">
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h4>步驟一：線上報名</h4>
+          <p>請點擊下方按鈕前往 Google 表單填寫報名資料</p>
+          <a href="https://forms.gle/fyEK8Hnh88JLgtL59" class="btn-primary" style="display:inline-block;margin-top:0.8rem;font-size:0.9rem;padding:0.7rem 1.5rem" target="_blank">前往報名表單</a>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h4>步驟二：ATM 轉帳繳費</h4>
+          <p>完成表單後，請依以下帳戶資訊完成繳費</p>
+          <div class="bank-box">
+            <div class="bank-row"><span class="bank-label">戶名</span><span class="bank-val">茱莉亞音樂文教事業有限公司</span></div>
+            <div class="bank-row"><span class="bank-label">銀行</span><span class="bank-val">808 玉山銀行</span></div>
+            <div class="bank-row"><span class="bank-label">帳號</span><span class="bank-val">0613940-045770</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h4>步驟三：確認報名成功</h4>
+          <p>填寫完報名表單後主辦單位將在一週內傳送至您信箱告知是否報名成功，參賽證電子檔將於賽前一週傳送至您的信箱。</p>
+        </div>
+      </div>
+    </div>
+    <div class="qr-box">
+      <div class="deadline-badge">📅 報名截止：115 年 7 月 31 日</div>
+      <p>掃描 QR 碼快速報名</p>
+      <img src="https://ailecup2026-cgjkcavs.manus.space/manus-storage/qr-code-registration_27911307.jpg" alt="報名表單 QR 碼">
+      <p style="margin-bottom:0">即日起開始接受報名</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- RULES -->
+<div id="rules">
+<section style="max-width:1100px;margin:0 auto;padding:5rem 2rem;">
+  <div class="section-label">比賽說明</div>
+  <h2 class="section-title">重要注意事項</h2>
+  <p class="section-subtitle" style="margin-bottom:2rem">請參賽者詳閱以下規定</p>
+  <div class="rules-grid">
+    <div class="rule-item"><div class="rule-n">1</div><div class="rule-text">注意禮節及服裝儀容，除了四手聯彈可看譜，其餘獨奏一律背譜</div></div>
+    <div class="rule-item"><div class="rule-n">2</div><div class="rule-text">比賽經受理後，不得申請退賽或退費，比賽前 30 分鐘到場</div></div>
+    <div class="rule-item"><div class="rule-n">3</div><div class="rule-text">比賽遲到 3 分鐘內限，大會按鈴即需馬上開始彈奏；若超過 3 分鐘則視為棄權</div></div>
+    <div class="rule-item"><div class="rule-n">4</div><div class="rule-text">爵士鼓、烏克麗麗、薩克斯風請自備伴奏，有無伴奏並不影響成績，現場備有 YAMAHA 專業比賽用爵士鼓</div></div>
+    <div class="rule-item"><div class="rule-n">5</div><div class="rule-text">比賽時鋼琴椅需自行調整高度，如需踏板輔助器請自備</div></div>
+    <div class="rule-item"><div class="rule-n">6</div><div class="rule-text">比賽期間禁止使用閃光燈拍照，手機務必調靜音或關機</div></div>
+    <div class="rule-item"><div class="rule-n">7</div><div class="rule-text">比賽可錄影，不可干擾其他參賽者；若經查證將取消參賽資格及獎項</div></div>
+    <div class="rule-item"><div class="rule-n">8</div><div class="rule-text">如遇颱風或重大事故，將另行公告處理方式</div></div>
+    <div class="rule-item"><div class="rule-n">9</div><div class="rule-text">如需播放音樂，請將音檔傳至 ailecup@gmail.com</div></div>
+    <div class="rule-item"><div class="rule-n">10</div><div class="rule-text">比賽現場開放參賽者自行錄音及錄影</div></div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<div id="contact">
+<section style="max-width:1100px;margin:0 auto;padding:5rem 2rem;">
+  <div class="section-label">聯絡我們</div>
+  <h2 class="section-title">有任何問題歡迎與我們聯繫</h2>
+  <p class="section-subtitle" style="margin-bottom:3rem">我們將盡速回覆您的詢問</p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">📞</div>
+      <h4>報名專線</h4>
+      <p>03-3525699<br>03-3222096</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <h4>聯絡信箱</h4>
+      <p>ailecup@gmail.com</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <h4>主辦單位</h4>
+      <p>桃園市愛樂藝術坊<br>發展協會</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 第三屆愛樂盃音樂大賽 &nbsp;|&nbsp; 主辦：桃園市愛樂藝術坊發展協會
+</footer>
+
+</body>
+</html>
